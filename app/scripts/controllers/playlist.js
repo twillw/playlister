@@ -20,10 +20,10 @@ angular.module('playlisterApp')
     $scope.createPlaylist = function(playlistData) {
       playlistData.createdBy = $scope.currentUser.username;
       playlistData.songs = [];
-      $http.post('api/playlists', playlistData)
+      $http.post('api/playlist', playlistData)
         .success(function(data) {
           // Redirect to playlist page
-          $location.path('/playlist' + data.title);
+          $location.path('/playlist/' + data.title);
         })
         .error(function(data) {
           console.log("An error has occurred creating a playlist");

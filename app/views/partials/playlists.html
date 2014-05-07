@@ -8,7 +8,10 @@
   <h3>Pick a playlist to add songs to: </h3>
   <ul>
     <li ng-repeat="playlist in playlists">
-      <h4>{{ playlist.title }} created at {{ playlist.date }}</h4>
+      <a ng-href="/playlist/{{ playlist.title}}">
+        <h4>{{ playlist.title }} created at {{ playlist.date }} by {{ playlist.createdBy }}</h4>
+      </a>
+      <button ng-click="deletePlaylist(playlist)">DELETE</button>
     </li>
   </ul>
 </div>

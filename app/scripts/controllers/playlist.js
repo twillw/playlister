@@ -15,6 +15,16 @@ angular.module('playlisterApp')
       .error(function(data) {
         console.log("An error occurred getting the playlists");
       });
+    // Gets current playlist
+    var currentTitle = $routeParams.title;
+    $http.get('api/playlist', { params : { title: currentTitle }})
+      .success(function(data) {
+        // Show playlist info
+        $scope.currentPlaylist = data;
+      })
+      .error(function(data) {
+        console.log("An error has occurred getting your playlist");
+      });
 
     // Create a new playlist
     $scope.createPlaylist = function(playlistData) {
@@ -30,15 +40,12 @@ angular.module('playlisterApp')
         });
     }
 
-    // Gets current playlist
-    $http.get('api/playlist', $routeParams.title)
-      .success(function(data) {
-        // Show playlist info
-        $scope.currentPlaylist = data;
-      })
-      .error(function(data) {
-        console.log("An error has occurred getting your playlist");
-      });
+    $scope.deletePlaylist = function (playlistData) {
+      $http.delete('api/playlist', playlistData)
+        .error(function (data) {
+          console.log("An error occurred deleting the playlist");
+        });
+    };
 
     // Updates current playlist
       $scope.updatePlaylist = function (playlistData) {

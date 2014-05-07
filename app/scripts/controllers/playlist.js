@@ -20,7 +20,8 @@ angular.module('playlisterApp')
     $http.get('api/playlist', { params : { title: currentTitle }})
       .success(function(data) {
         // Show playlist info
-        $scope.currentPlaylist = data;
+        $scope.currentPlaylist = data[0];
+        console.log($scope.currentPlaylist);
       })
       .error(function(data) {
         console.log("An error has occurred getting your playlist");

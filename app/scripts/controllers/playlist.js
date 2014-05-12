@@ -21,7 +21,6 @@ angular.module('playlisterApp')
       .success(function(data) {
         // Show playlist info
         $scope.currentPlaylist = data[0];
-        console.log($scope.currentPlaylist);
       })
       .error(function(data) {
         console.log("An error has occurred getting your playlist");
@@ -49,6 +48,10 @@ angular.module('playlisterApp')
     };
 
     // Updates current playlist
-      $scope.updatePlaylist = function (playlistData) {
+      $scope.updatePlaylist = function (songData, playlistData) {
+        $http.put('api/playlist', { songData: songData, playlistData: playlistData, currentUser: $scope.currentUser })
+          .success(function (data) {
+            $scope.currentPlaylist = data;
+          });
       };
   });

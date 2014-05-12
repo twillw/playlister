@@ -52,6 +52,7 @@ angular.module('playlisterApp')
         $http.put('api/playlist', { songData: songData, playlistData: playlistData, currentUser: $scope.currentUser })
           .success(function (data) {
             $scope.currentPlaylist = data;
+            $scope.playlist.song.songUrl = "";
           });
       };
   });

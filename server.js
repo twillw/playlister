@@ -27,7 +27,11 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 require('./lib/config/dummydata');
 
 // Setup Express
-var app = express();
+var app = express(),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server);
+
+require('./lib/config/socket')(io, app);
 require('./lib/config/express')(app);
 require('./lib/routes')(app);
 

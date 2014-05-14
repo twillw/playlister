@@ -1,12 +1,18 @@
 'use strict';
 
 angular.module('playlisterApp')
-  .controller('PlaylistCtrl', function ($scope, $http, $cookieStore, $location, $routeParams) {
+  .controller('PlaylistCtrl', function ($scope, $http, $cookieStore, $location, $routeParams, socketFactory) {
+    // Socket Listeners
+    var socket = socketFactory();
+    socket.on('create:playlist', function (data) {
+      $scope.playlists.push(data);
+    });
+
+
     // Set user if current user exists
     if (typeof $cookieStore.get('currentUser') !== 'undefined') {
       $scope.currentUser = $cookieStore.get('currentUser');
     }
-
     // Get all playlists
     $http.get('/api/playlists')
       .success(function(data) {

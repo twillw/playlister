@@ -40,8 +40,12 @@ angular.module('playlisterApp')
         });
     }
 
-    $scope.deletePlaylist = function (playlistData) {
-      $http.delete('api/playlist', playlistData)
+    // Deletes playlist
+    $scope.deletePlaylist = function (playlistData, index) {
+      $http.delete('api/playlist', { params : { playlistId: playlistData._id }})
+        .success(function (data) {
+          $scope.playlists.splice(index, 1);
+        })
         .error(function (data) {
           console.log("An error occurred deleting the playlist");
         });

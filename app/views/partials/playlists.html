@@ -11,7 +11,7 @@
       <a ng-href="/playlist/{{ playlist.title}}">
         <h4>{{ playlist.title }} created at {{ playlist.date }} by {{ playlist.createdBy }}</h4>
       </a>
-      <button ng-click="deletePlaylist(playlist)">DELETE</button>
+      <button ng-click="deletePlaylist(playlist, $index)">DELETE</button>
     </li>
   </ul>
 </div>

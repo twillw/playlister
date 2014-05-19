@@ -1,6 +1,6 @@
 <div ng-include="'partials/navbar'"></div>
 
-<div ng-controller="PlaylistCtrl">
+<div>
   <h2>{{ currentPlaylist.title }} created by {{ currentPlaylist.createdBy }} on {{ currentPlaylist.date }}</h2>
 </div>
 
@@ -9,7 +9,8 @@
   <div>
     <ul>
       <li ng-repeat="song in currentPlaylist.songs">
-        {{ song.songName }} added by {{ song.addedBy }} on {{ song.addedDate }}
+        {{ song.songName }} added by {{ song.addedBy }} on {{ song.addedDate }} {{ $index }}
+        <span ng-click="updatePlaylist(song, currentPlaylist, 'delete', index)">X</span>
       </li>
       <li>
         <form>

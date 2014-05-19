@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('playlisterApp')
-  .controller('PlaylistCtrl', function ($scope, $http, $cookieStore, $location, $routeParams, socketFactory) {
+  .controller('PlaylistCtrl', function ($scope, $http, $cookieStore, $location, $routeParams, songSocket) {
     // Socket Listeners
-    var socket = socketFactory();
-    socket.on('create:playlist', function (data) {
-      $scope.playlists.push(data);
+    songSocket.on('songs:updated', function (data) {
+      if (data.title === $scope.currentPlaylist.title) {
+        $scope.currentPlaylist = data;
+      }
     });
-
 
     // Set user if current user exists
     if (typeof $cookieStore.get('currentUser') !== 'undefined') {
@@ -58,11 +58,21 @@ angular.module('playlisterApp')
     };
 
     // Updates current playlist
-      $scope.updatePlaylist = function (songData, playlistData) {
-        $http.put('api/playlist', { songData: songData, playlistData: playlistData, currentUser: $scope.currentUser })
+      $scope.updatePlaylist = function (songData, playlistData, operation, index) {
+        var updateData = {
+          songData: songData,
+          playlistData: playlistData,
+          currentUser: $scope.currentUser,
+          operation: operation,
+          songIndex: index
+        };
+        $http.put('api/playlist', updateData)
           .success(function (data) {
             $scope.currentPlaylist = data;
-            $scope.playlist.song.songUrl = "";
+            songSocket.emit('songs:updated', $scope.currentPlaylist);
+            if (operation !== 'delete') {
+              $scope.playlist.song.songUrl = "";
+            }
           });
       };
   });

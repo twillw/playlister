@@ -59,6 +59,7 @@ angular.module('playlisterApp')
 
     // Updates current playlist
       $scope.updatePlaylist = function (songData, playlistData, operation, index) {
+        $scope.isUpdatingPlaylist = true;
         var updateData = {
           songData: songData,
           playlistData: playlistData,
@@ -69,10 +70,8 @@ angular.module('playlisterApp')
         $http.put('api/playlist', updateData)
           .success(function (data) {
             $scope.currentPlaylist = data;
+            //$scope.isUpdatingPlaylist = false;
             songSocket.emit('songs:updated', $scope.currentPlaylist);
-            if (operation !== 'delete') {
-              $scope.playlist.song.songUrl = "";
-            }
           });
       };
   });

@@ -3,11 +3,13 @@
 angular.module('playlisterApp')
   .controller('SongSearchCtrl', function ($scope, $http, $location) {
     $scope.searchSong = function (songQuery) {
-      var songQueryEncoded = encodeURIComponent(songQuery);
+      var songQueryEncoded = songQuery.split(' ').join('+');
       var youtubeQueryParams = {
         'q': songQueryEncoded,
         'orderby': 'relevance',
+        'start-index': '1',
         'max-results': '15',
+        'format': '5',
         'v': '2',
         'alt': 'json'
       };

@@ -6,7 +6,7 @@
 
 <div ng-include="'partials/songbrowser'"></div>
 
-<div>
+<div class="medium-7 columns">
   <h4>Songs:</h4>
   <div>
     <ul id="song-list">
@@ -20,7 +20,9 @@
             <input type="text" ng-model="playlist.song.songUrl">
           </div>
         </form>
-        <button class="medium-2 columns add-song" ng-class="{ hidden: isUpdatingPlaylist }" ng-click="updatePlaylist(playlist, currentPlaylist)">ADD SONG</button>
+        <button class="medium-2 columns add-song" ng-class="{ hidden: isUpdatingPlaylist }" ng-click="updatePlaylist(playlist, currentPlaylist)">
+          ADD SONG
+        </button>
         <div class="loader-container" ng-class="{ hidden: !isUpdatingPlaylist }">
           <span class="loader icon-spin1"></span>
         </div>
@@ -28,3 +30,4 @@
     </ul>
   </div>
 </div>
+<div class="medium-5 columns" ng-include="'partials/player'"></div>

@@ -3,14 +3,18 @@
     <div class="medium-6 columns">
       <input type="text" ng-model="playlist.songSearch">
     </div>
+    <button ng-click="searchSong(playlist.songSearch)">SEARCH YOUTUBE</button>
   </form>
-  <button ng-click="searchSong(playlist.songSearch)">SEARCH YOUTUBE</button>
   <div class="search-results">
     <ul>
       <li ng-repeat="result in searchResults">
-        <h6>{{ result.title.$t }}</h6>
-        <p>uploaded by: {{ result.author[0].name.$t }}</p>
-        <button class="medium-2 columns add-song" ng-class="{ hidden: isUpdatingPlaylist }" ng-click="updatePlaylist(result.id.$t, currentPlaylist)">ADD SONG</button>
+        <div class="medium-10 columns">
+          <h6>{{ result.title.$t }}</h6>
+          <p>uploaded by: {{ result.author[0].name.$t }}</p>
+        </div>
+        <button class="medium-2 columns add-song" ng-class="{ hidden: isUpdatingPlaylist }" ng-click="updatePlaylist(result.id.$t, currentPlaylist)">
+          ADD SONG
+        </button>
         <div class="loader-container" ng-class="{ hidden: !isUpdatingPlaylist }">
           <span class="loader icon-spin1"></span>
         </div>

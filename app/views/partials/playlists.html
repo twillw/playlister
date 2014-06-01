@@ -6,10 +6,11 @@
 
 <div id="playlist-list">
   <h3>Pick a playlist to add songs to: </h3>
-  <ul>
+  <ul id="playlist-listing">
     <li ng-repeat="playlist in playlists">
-      <a ng-href="/playlist/{{ playlist.title}}">
-        <h4>{{ playlist.title }} created at {{ playlist.date }} by {{ playlist.createdBy }}</h4>
+      <a class="playlist-link" ng-href="/playlist/{{ playlist.title}}">
+        <h4>{{ playlist.title }}</h4>
+        <h5>created on {{ playlist.date | formatTime }} by {{ playlist.createdBy }}</h5>
       </a>
       <button ng-click="deletePlaylist(playlist, $index)">DELETE</button>
     </li>

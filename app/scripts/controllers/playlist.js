@@ -70,7 +70,7 @@ angular.module('playlisterApp')
         $http.put('api/playlist', updateData)
           .success(function (data) {
             $scope.currentPlaylist = data;
-            //$scope.isUpdatingPlaylist = false;
+            $scope.isUpdatingPlaylist = false;
             songSocket.emit('songs:updated', $scope.currentPlaylist);
           });
       };

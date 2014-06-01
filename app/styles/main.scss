@@ -5,6 +5,13 @@
   padding: 0.2em 0;
 }
 
+// Colors
+$link-color: #008CBA;
+$link-hover: #007ba0;
+$light-bg: #d3d3d3;
+
+$column-gutter: 1.875em;
+
 // Universal Styles
 .hidden{
   display: none;
@@ -23,12 +30,39 @@ span.loader:before{
 button{
   padding: 0.6em;
 }
+.underline{
+  text-decoration: underline;
+  color: $link-color;
+  &:hover{
+    color: $link-hover;
+  }
+}
+
+// Playlists Page Style
+#playlist-listing{
+  list-style: none;
+  .playlist-link{
+    display: inline-block;
+    padding: $column-gutter/2;
+    &:hover{
+      background: $light-bg;
+    }
+  }
+  h5{
+    display: inline-block;
+  }
+}
 
 // Playlist Page Styles
 #song-list{
   list-style: none;
   li{
     margin-bottom: 0.2em;
+  }
+}
+.search-results{
+  ul{
+    list-style: none;
   }
 }
 .icon-cancel{

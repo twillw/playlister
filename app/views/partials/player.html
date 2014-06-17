@@ -1,9 +1,9 @@
 <div ng-controller="PlayerCtrl" id="player">
   <object id='ytSongPlayer' class="medium-12 columns"></object>
-  <div id="playler-controls">
+  <div id="player-controls">
     <span id="skip-back" class="icon-rewind"></span>
-    <span id="skip-back" class="icon-pause"></span>
-    <span id="skip-back" class="icon-play"></span>
-    <span id="skip-back" class="icon-fast-fw"></span>
+    <span id="pause" class="icon-pause" ng-click="currentPlayer.pause()"></span>
+    <span id="play" class="icon-play" ng-click="currentPlayer.play()"></span>
+    <span id="skip-ahead" class="icon-fast-fw"></span>
   </div>
 </div>

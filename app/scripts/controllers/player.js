@@ -9,9 +9,9 @@ angular.module('playlisterApp')
                        "ytSongPlayer", "355", "200", "8", null, null, params, atts);
     $scope.initPlayer = function (currentSong) {
       var songs  = $scope.currentPlaylist.songs;
-      console.log(songs[currentSong]['songUrl']);
+      console.log(songs[currentSong]['songId']);
       console.log($scope.videoEl);
-      $scope.videoEl.loadVideoByUrl(songs[currentSong]['songUrl']);
+      $scope.videoEl.loadVideoById(songs[currentSong]['songId']);
     };
     $window.onYouTubePlayerReady = function() {
       $scope.videoEl = document.getElementById('ytSongPlayer');

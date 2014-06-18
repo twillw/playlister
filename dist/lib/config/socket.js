@@ -6,9 +6,9 @@ var express = require('express'),
 
 module.exports = function (io, app) {
 
+  io.set('log level', 1); // reduce logging
   io.sockets.on('connection', function (socket) {
     var user = socket.handshake.user;
-    console.log("??? SOCKET CONNECTED");
 
     socket.on('songs:updated', function (data) {
       socket.broadcast.emit('songs:updated', data);

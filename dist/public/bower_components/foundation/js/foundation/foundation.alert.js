@@ -4,7 +4,7 @@
   Foundation.libs.alert = {
     name : 'alert',
 
-    version : '5.2.3',
+    version : '5.2.2',
 
     settings : {
       callback: function (){}
@@ -40,4 +40,4 @@
 
     reflow : function () {}
   };
-}(jQuery, window, window.document));
+}(jQuery, this, this.document));

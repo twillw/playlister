@@ -4,7 +4,7 @@
   Foundation.libs.slider = {
     name : 'slider',
 
-    version : '5.2.3',
+    version : '5.2.2',
 
     settings: {
       start: 0,
@@ -123,6 +123,7 @@
 
     normalized_value : function(val, start, end, step) {
       var range = end - start,
+          step = step,
           point = val*range,
           mod = (point-(point%step)) / step,
           rem = point % step,
@@ -196,4 +197,4 @@
 
   };
 
-}(jQuery, window, window.document));
+}(jQuery, this, this.document));

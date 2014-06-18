@@ -10,5 +10,6 @@
   },
   "_source": "git://github.com/swfobject/swfobject.git",
   "_target": "*",
-  "_originalSource": "swfobject"
+  "_originalSource": "swfobject",
+  "_direct": true
 }

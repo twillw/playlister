@@ -3,4 +3,4 @@ node_modules
 .sass-cache
 app/bower_components
 heroku
-dist
+dist'node_modules' 

@@ -1,0 +1,33 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div>
+  <h2>{{ currentPlaylist.title }} created by {{ currentPlaylist.createdBy }} on {{ currentPlaylist.date | formatTime }}</h2>
+</div>
+
+<div ng-include="'partials/songbrowser'"></div>
+
+<div class="medium-7 columns">
+  <h4>Songs:</h4>
+  <div>
+    <ul id="song-list">
+      <li ng-repeat="song in currentPlaylist.songs">
+        {{ song.songName }} added by {{ song.addedBy }} on {{ song.addedDate | formatTime }}
+        <span class="icon-cancel" ng-click="updatePlaylist(song, currentPlaylist, 'delete', index)"></span>
+      </li>
+      <li class="row">
+        <form>
+          <div class="medium-6 columns">
+            <input type="text" ng-model="playlist.song.songUrl">
+          </div>
+        </form>
+        <button class="medium-2 columns add-song" ng-class="{ hidden: isUpdatingPlaylist }" ng-click="updatePlaylist(playlist, currentPlaylist)">
+          ADD SONG
+        </button>
+        <div class="loader-container" ng-class="{ hidden: !isUpdatingPlaylist }">
+          <span class="loader icon-spin1"></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="medium-5 columns" ng-include="'partials/player'"></div>

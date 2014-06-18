@@ -1,0 +1,28 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="intro">
+  <h3>Hi {{ currentUser.username }}, would you like to edit an existing playlist or create a new one?</h3>
+</div>
+
+<div id="playlist-list">
+  <h3>Pick a playlist to add songs to: </h3>
+  <ul id="playlist-listing">
+    <li ng-repeat="playlist in playlists">
+      <a class="playlist-link" ng-href="/playlist/{{ playlist.title}}">
+        <h4>{{ playlist.title }}</h4>
+        <h5>created on {{ playlist.date | formatTime }} by {{ playlist.createdBy }}</h5>
+      </a>
+      <button ng-click="deletePlaylist(playlist, $index)">DELETE</button>
+    </li>
+  </ul>
+</div>
+
+<div id="new-playlist">
+  <h4>Enter a title to create a new playlist</h4>
+  <form novalidate="" class="playlist-form">
+    <div>
+      Title: <input type="text" ng-model="playlist.title">
+    </div>
+    <button ng-click="createPlaylist(playlist)">SAVE</button>
+  </form>
+</div>
